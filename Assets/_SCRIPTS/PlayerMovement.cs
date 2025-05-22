@@ -32,6 +32,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Player has been hig! -1 life");
+        }
+    }
 
 }
