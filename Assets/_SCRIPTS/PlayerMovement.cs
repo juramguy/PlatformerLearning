@@ -4,11 +4,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    private float horizontal;
-    public float moveSpeed = 10f;
-
     private Rigidbody2D rb;
-    
+
+    public float moveSpeed = 100f;
+    public float jumpForce = 5f;
+
+    private bool isGrounded;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,15 +21,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        horizontal = Input.GetAxis("Horizontal");
+        float moveInput = Input.GetAxis("Horizontal");
+        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-        if (Input.GetButton("Horizontal"))
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.linearVelocity = new Vector2(horizontal * moveSpeed, rb.linearVelocityY) * Time.deltaTime;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.y, jumpForce);
         }
 
 
     }
 
+    
 
 }
