@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject DoubleJumpPowerUpPrefab;
 
     public TextMeshProUGUI CoinText;
-    public int coinScore = 0;
+    private int coinScore = 0;
 
     //handling life management
     private int remainingLifes = 3;
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
        rb = GetComponent<Rigidbody2D>();
+        //remainingLivesText.text = "Lives: " + remainingLifes;
     }
 
     // Update is called once per frame
@@ -91,12 +93,16 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Game Over");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             coinScore = 0;
+            //remainingLivesText.text = "Lives: " + remainingLifes;
         }
         else
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //remainingLivesText.text = "Lives: " + remainingLifes;
         }
 
     }
+
+
 
 }
