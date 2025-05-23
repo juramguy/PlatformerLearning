@@ -59,7 +59,6 @@ public class PlayerMovement : MonoBehaviour
             doubleJumpUnlocked = true;
             jumpCountMax = 2;
             Destroy(DoubleJumpPowerUpPrefab);
-            Debug.Log("Double Jump unlocked");
         }
 
     }

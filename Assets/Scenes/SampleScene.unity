@@ -624,6 +624,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8679480338399198780, guid: 1b9f3d0ac484e36418504c93fd4042dd, type: 3}
   m_PrefabInstance: {fileID: 1430256865}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1196102311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8543903124618015616, guid: b270d53e238a3f846958a9c4cf5058f9, type: 3}
+  m_PrefabInstance: {fileID: 6872042270567854765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1384424492
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +844,7 @@ PrefabInstance:
     - target: {fileID: 2131135454777454597, guid: f5e8a66613033164bb88db5f4f970c67, type: 3}
       propertyPath: DoubleJumpPowerUpPrefab
       value: 
-      objectReference: {fileID: 8543903124618015616, guid: b270d53e238a3f846958a9c4cf5058f9, type: 3}
+      objectReference: {fileID: 1196102311}
     - target: {fileID: 3674458638703496062, guid: f5e8a66613033164bb88db5f4f970c67, type: 3}
       propertyPath: m_Name
       value: Player
@@ -989,11 +994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9148686477948388232, guid: b270d53e238a3f846958a9c4cf5058f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.6
+      value: 17.97
       objectReference: {fileID: 0}
     - target: {fileID: 9148686477948388232, guid: b270d53e238a3f846958a9c4cf5058f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7725087
+      value: 2.53
       objectReference: {fileID: 0}
     - target: {fileID: 9148686477948388232, guid: b270d53e238a3f846958a9c4cf5058f9, type: 3}
       propertyPath: m_LocalPosition.z
