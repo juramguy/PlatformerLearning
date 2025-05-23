@@ -94,14 +94,14 @@ public class PlayerMovement : MonoBehaviour
 
         if(remainingLives <= 0)
         {
-            Debug.Log("Game Over");
+            
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             coinScore = 0;
             remainingLivesText.text = "Lives: " + remainingLives;
         }
         else
         {
-            Debug.Log("Respawning...");
+            
             transform.position = startPosition;
             remainingLivesText.text = "Lives: " + remainingLives;
         }
