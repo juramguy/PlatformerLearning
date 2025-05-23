@@ -19,6 +19,7 @@ public class ItemPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Item Picked Up");
+            Destroy(this.gameObject);
         }
     }
 

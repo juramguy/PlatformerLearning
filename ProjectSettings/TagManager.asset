@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - BreakableTile
   - Pickup
+  - FragileBlock
+  - DoubleJumpPowerUp
   layers:
   - Default
   - TransparentFX
