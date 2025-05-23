@@ -1,5 +1,8 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +19,14 @@ public class PlayerMovement : MonoBehaviour
     private int jumpCountMax = 1; // default value.
 
     public GameObject DoubleJumpPowerUpPrefab;
+
+    public TextMeshProUGUI CoinText;
+    public int coinScore = 0;
+
+    //handling life management
+    private int remainingLifes = 3;
+    public TextMeshProUGUI remainingLivesText;
+    public float resetZone = 10f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,6 +48,10 @@ public class PlayerMovement : MonoBehaviour
             jumpCount++;
         }
 
+        if(transform.position.y < resetZone)
+        {
+            LoseLifeAndReset();
+        }
 
     }
 
@@ -49,10 +64,6 @@ public class PlayerMovement : MonoBehaviour
             jumpCount = 0;
         }
 
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("Player has been hig! -1 life");
-        }
 
         if (collision.gameObject.CompareTag("DoubleJumpPowerUp"))
         {
@@ -65,11 +76,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground") ||collision.gameObject.CompareTag("FragileBlock"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("FragileBlock"))
         {
             isGrounded = false;
         }
     }
 
+    void LoseLifeAndReset()
+    {
+        remainingLifes--;
+
+        if(remainingLifes == 0)
+        {
+            Debug.Log("Game Over");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            coinScore = 0;
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+    }
 
 }
