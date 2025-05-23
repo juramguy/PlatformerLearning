@@ -22,18 +22,22 @@ public class PlayerMovement : MonoBehaviour
     public GameObject DoubleJumpPowerUpPrefab;
 
     public TextMeshProUGUI CoinText;
-    private int coinScore = 0;
+    public int coinScore = 0;
 
     //handling life management
-    private int remainingLifes = 3;
+    public int remainingLives = 3;
     public TextMeshProUGUI remainingLivesText;
-    public float resetZone = 10f;
+    public float resetZone = -10;
+
+    private Vector3 startPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
        rb = GetComponent<Rigidbody2D>();
         //remainingLivesText.text = "Lives: " + remainingLifes;
+        startPosition = new Vector3(0, 1, 0);
+        
     }
 
     // Update is called once per frame
@@ -50,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
             jumpCount++;
         }
 
-        if(transform.position.y < resetZone)
+        if(transform.position.y <= resetZone)
         {
             LoseLifeAndReset();
         }
@@ -86,19 +90,20 @@ public class PlayerMovement : MonoBehaviour
 
     void LoseLifeAndReset()
     {
-        remainingLifes--;
+        remainingLives--;
 
-        if(remainingLifes == 0)
+        if(remainingLives <= 0)
         {
             Debug.Log("Game Over");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             coinScore = 0;
-            //remainingLivesText.text = "Lives: " + remainingLifes;
+            remainingLivesText.text = "Lives: " + remainingLives;
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            //remainingLivesText.text = "Lives: " + remainingLifes;
+            Debug.Log("Respawning...");
+            transform.position = startPosition;
+            remainingLivesText.text = "Lives: " + remainingLives;
         }
 
     }

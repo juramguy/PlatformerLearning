@@ -1707,6 +1707,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2131135454777454597, guid: f5e8a66613033164bb88db5f4f970c67, type: 3}
+      propertyPath: resetZone
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131135454777454597, guid: f5e8a66613033164bb88db5f4f970c67, type: 3}
+      propertyPath: remainingLivesText
+      value: 
+      objectReference: {fileID: 989144576}
+    - target: {fileID: 2131135454777454597, guid: f5e8a66613033164bb88db5f4f970c67, type: 3}
       propertyPath: DoubleJumpPowerUpPrefab
       value: 
       objectReference: {fileID: 1196102311}
@@ -1862,9 +1870,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 1384424493}
     m_Modifications:
     - target: {fileID: 7460210156843349543, guid: b270d53e238a3f846958a9c4cf5058f9, type: 3}
+      propertyPath: m_Radius
+      value: 0.14831382
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460210156843349543, guid: b270d53e238a3f846958a9c4cf5058f9, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 47d444b0152f93045a7e42b7e9b064d8, type: 2}
+    - target: {fileID: 7460210156843349543, guid: b270d53e238a3f846958a9c4cf5058f9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8543903124618015616, guid: b270d53e238a3f846958a9c4cf5058f9, type: 3}
       propertyPath: m_Name
       value: DoubleJumpPowerUp
