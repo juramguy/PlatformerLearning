@@ -2,21 +2,18 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    [SerializeField] private Color _baseColor, _offsetColor;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+
+    public void Init(bool isOffset)
     {
-        
+        _spriteRenderer.color = isOffset ? _offsetColor : _baseColor;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnMouseDown()
-    {
-        Destroy(this.gameObject);
-    }
+    //private void OnMouseDown()
+    //{
+    //    Destroy(this.gameObject);
+    //}
 
 }
