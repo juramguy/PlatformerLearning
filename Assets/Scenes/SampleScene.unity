@@ -1703,6 +1703,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1233002300}
     - target: {fileID: 2131135454777454597, guid: f5e8a66613033164bb88db5f4f970c67, type: 3}
+      propertyPath: jumpForce
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131135454777454597, guid: f5e8a66613033164bb88db5f4f970c67, type: 3}
       propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
@@ -1714,6 +1718,10 @@ PrefabInstance:
       propertyPath: remainingLivesText
       value: 
       objectReference: {fileID: 989144576}
+    - target: {fileID: 2131135454777454597, guid: f5e8a66613033164bb88db5f4f970c67, type: 3}
+      propertyPath: shortJumpMultiplier
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2131135454777454597, guid: f5e8a66613033164bb88db5f4f970c67, type: 3}
       propertyPath: DoubleJumpPowerUpPrefab
       value: 

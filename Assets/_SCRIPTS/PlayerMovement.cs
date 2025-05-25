@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 100f;
     public float jumpForce = 5f;
+    public float shortJumpMultiplier = 0.5f;
+    private bool isJumping = false;
 
     private bool isGrounded;
 
@@ -51,7 +53,14 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.y, jumpForce);
             isGrounded = false;
+            isJumping = true;
             jumpCount++;
+        }
+
+        if(Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0 && isJumping)
+        {
+           rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * shortJumpMultiplier);
+            isJumping = false;
         }
 
         if(transform.position.y <= resetZone)
