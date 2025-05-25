@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private Rigidbody2D rb;
+    private Animator anim;
 
     public float moveSpeed = 100f;
     public float jumpForce = 5f;
@@ -33,12 +34,24 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 startPosition;
 
+    //gun management
+    private bool hasGun = false;
+    private int maxAmmo = 30;
+    private int currentAmmo = 0;
+    public GameObject gunObject;
+    //bullet and firepoint
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float bulletForce = 10f;
+    public TextMeshProUGUI ammoText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
        rb = GetComponent<Rigidbody2D>();
         //remainingLivesText.text = "Lives: " + remainingLifes;
         startPosition = new Vector3(0, 1, 0);
+        anim = GetComponent<Animator>();
         
     }
 
@@ -48,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
 
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+
+        anim.SetBool("isRunning", Mathf.Abs(moveInput) > 0);
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpCountMax)
         {
@@ -68,6 +83,19 @@ public class PlayerMovement : MonoBehaviour
             LoseLifeAndReset();
         }
 
+        //mouse movement with the gun
+        Vector3 mousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        Vector2 direction = mousePos - gunObject.transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        gunObject.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        //shooting mechanics
+        if (hasGun && Input.GetMouseButtonDown(1) && currentAmmo > 0)
+        {
+            Shoot();
+        }
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -79,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
             jumpCount = 0;
         }
 
-
         if (collision.gameObject.CompareTag("DoubleJumpPowerUp"))
         {
             doubleJumpUnlocked = true;
@@ -87,7 +114,14 @@ public class PlayerMovement : MonoBehaviour
             Destroy(DoubleJumpPowerUpPrefab);
         }
 
+        //spawn in a new level
+        if (collision.gameObject.CompareTag("Portal"))
+        {
+            SceneManager.LoadScene("Level1");
+        }
+
     }
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -117,6 +151,50 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
 
+        if (collision.CompareTag("L1_Gun"))
+        {
+            hasGun = true;
+            currentAmmo = maxAmmo;
+            gunObject.SetActive(true);
+            Destroy(collision.gameObject);
+            UpdateAmmoUI(); // function that gets called that is yet to be made
+            
+        }
+
+    }
+
+    void Shoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
+        currentAmmo--;
+        UpdateAmmoUI();
+
+        if (currentAmmo <= 0)
+        {
+            gunObject.SetActive(false);
+            hasGun = false;
+        }    
+
+    }
+
+    void UpdateAmmoUI()
+    {
+        if (hasGun)
+        {
+            ammoText.text = "Ammo: " + currentAmmo;
+        }
+        else 
+        {
+
+            ammoText.text = "";
+        
+        }
+
+    }
 
 }

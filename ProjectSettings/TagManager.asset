@@ -10,6 +10,9 @@ TagManager:
   - Pickup
   - FragileBlock
   - DoubleJumpPowerUp
+  - Portal
+  - L1_Gun
+  - L1_Bullet
   layers:
   - Default
   - TransparentFX
